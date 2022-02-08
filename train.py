@@ -7,7 +7,6 @@ from pspunet import pspunet
 import matplotlib.pyplot as plt
 import datetime
 import time
-from IPython.display import clear_output
 
 
 IMG_WIDTH = 480
