@@ -35,9 +35,9 @@ validation_mIoU =tf.keras.metrics.MeanIoU(num_classes = n_classes, name = "valid
 test_mIoU =tf.keras.metrics.MeanIoU(num_classes = n_classes, name = "test_mIoU")
 
 current_time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-train_log_dir = '/' + current_time + '/train'
-validation_log_dir = '/' + current_time + '/validation'
-test_log_dir = '/' + current_time + '/test'
+train_log_dir = '/pspunet/' + current_time + '/train'
+validation_log_dir = '/pspunet/' + current_time + '/validation'
+test_log_dir = '/pspunet/' + current_time + '/test'
 train_summary_writer = tf.summary.create_file_writer(train_log_dir)
 validation_summary_writer = tf.summary.create_file_writer(validation_log_dir)
 test_summary_writer = tf.summary.create_file_writer(test_log_dir)
