@@ -35,12 +35,12 @@ validation_mIoU =tf.keras.metrics.MeanIoU(num_classes = n_classes, name = "valid
 test_mIoU =tf.keras.metrics.MeanIoU(num_classes = n_classes, name = "test_mIoU")
 
 current_time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-train_log_dir = '/pspunet/' + current_time + '/train'
-validation_log_dir = '/pspunet/' + current_time + '/validation'
-test_log_dir = '/pspunet/' + current_time + '/test'
-train_summary_writer = tf.summary.create_file_writer(train_log_dir)
-validation_summary_writer = tf.summary.create_file_writer(validation_log_dir)
-test_summary_writer = tf.summary.create_file_writer(test_log_dir)
+train_log_dir = '/pspunet/'
+validation_log_dir = '/pspunet/' 
+test_log_dir = '/pspunet/'
+#train_summary_writer = tf.summary.create_file_writer(train_log_dir)
+#validation_summary_writer = tf.summary.create_file_writer(validation_log_dir)
+#test_summary_writer = tf.summary.create_file_writer(test_log_dir)
 
 @tf.function
 def train_step(images, label):
@@ -170,15 +170,15 @@ def train(train_dataset, test_dataset, epochs, batch_size):
             path = "/" + str(validation_loss.result().numpy())+"_epoch_"+str(epoch+1)+".h5" 
             model.save(path)
               
-            with train_summary_writer.as_default():
-                tf.summary.scalar('loss', train_loss.result(), step=epoch+1)
-                tf.summary.scalar('accuracy', train_accuracy.result(), step=epoch+1)             
-                tf.summary.scalar('mIoU', train_mIoU.result(), step=epoch)    
+            #with train_summary_writer.as_default():
+             #   tf.summary.scalar('loss', train_loss.result(), step=epoch+1)
+              #  tf.summary.scalar('accuracy', train_accuracy.result(), step=epoch+1)             
+               # tf.summary.scalar('mIoU', train_mIoU.result(), step=epoch)    
                   
-            with validation_summary_writer.as_default():
-                tf.summary.scalar('loss', validation_loss.result(), step=epoch+1)
-                tf.summary.scalar('accuracy', validation_accuracy.result(), step=epoch+1)    
-                tf.summary.scalar('mIoU', validation_mIoU.result(), step=epoch)     
+            #with validation_summary_writer.as_default():
+             #   tf.summary.scalar('loss', validation_loss.result(), step=epoch+1)
+              #  tf.summary.scalar('accuracy', validation_accuracy.result(), step=epoch+1)    
+               # tf.summary.scalar('mIoU', validation_mIoU.result(), step=epoch)     
 
         plt.plot(range(1,len(epoch_train_losses)+1),epoch_train_losses)
         plt.plot(range(1, len(epoch_val_losses)+1), epoch_val_losses)
