@@ -167,7 +167,7 @@ def train(train_dataset, test_dataset, epochs, batch_size):
                                                                                   validation_loss.result()
                                                                                   ))
           
-            path = "/" + str(validation_loss.result().numpy())+"_epoch_"+str(epoch+1)+".h5" 
+            path = "/pspunet/" + str(validation_loss.result().numpy())+"_epoch_"+str(epoch+1)+".h5" 
             model.save(path)
               
             #with train_summary_writer.as_default():
