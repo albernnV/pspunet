@@ -44,14 +44,14 @@ IMG_WIDTH = 480
 IMG_HEIGHT = 272
 
 def train_images():
-    top_foloder = "/content/drive/MyDrive/Exjobb/PSPUnet/rgb_images/rgb_images/"
+    top_foloder = "/datastores/dataset/rgb_images/"
     data_folder = os.listdir(top_foloder)
     data_folder.sort()
     data_folder = list(map(lambda x : top_foloder + x, data_folder))
     return data_folder
 
 def mask_images():
-    top_foloder = "/content/drive/MyDrive/Exjobb/PSPUnet/semantic_annotations/semantic_annotations/rgbLabels/"
+    top_foloder = "/datastores/dataset/semantic_annotations/rgbLabels/"
     mask_folder = os.listdir(top_foloder)
     mask_folder.sort()
     mask_folder = list(map(lambda x : top_foloder + x, mask_folder))
@@ -75,8 +75,8 @@ def process_path(file_path):
     return img
 
 def data_load():
-    list_ds = tf.data.Dataset.list_files("/content/drive/MyDrive/Exjobb/PSPUnet/rgb_images/rgb_images/*.png", shuffle=False)
-    list_ds_label = tf.data.Dataset.list_files("/content/drive/MyDrive/Exjobb/PSPUnet/semantic_annotations/semantic_annotations/rgbLabels/*.png", shuffle=False)
+    list_ds = tf.data.Dataset.list_files("/datastores/dataset/rgb_images/*.png", shuffle=False)
+    list_ds_label = tf.data.Dataset.list_files("/datastores/dataset/semantic_annotations/rgbLabels/*.png", shuffle=False)
 
     full_dataset_size = int(tf.data.experimental.cardinality(list_ds))
 
