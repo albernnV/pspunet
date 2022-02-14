@@ -7,11 +7,28 @@ from pspunet import pspunet
 import matplotlib.pyplot as plt
 import datetime
 import time
+from tensorflow.compat.v1 import ConfigProto
+from tensorflow.compat.v1 import InteractiveSession
 
 
 IMG_WIDTH = 480
 IMG_HEIGHT = 272
 n_classes = 10
+gpus = tf.config.experimental.list_physical_devices('GPU')
+config = ConfigProto()
+config.gpu_options.allow_growth = True
+session = InteractiveSession(config=config)
+print(gpus)
+
+if gpus:
+    try:
+        tf.config.experimental.set_virtual_device_configuration(
+       gpus[0],
+        [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=16000)])
+    except RuntimeError as e:
+        print(e)
+ 
+
         
 model = pspunet((IMG_HEIGHT, IMG_WIDTH,3), n_classes)
 
